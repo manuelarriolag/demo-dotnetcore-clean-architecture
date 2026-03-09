@@ -77,9 +77,6 @@ Current enforced rules:
 - `GreetingsCore` must not depend on `GreetingsApp`.
 - `GreetingsCore.Model` must not depend on `GreetingsCore.Adapters`.
 - `GreetingsCore.Ports` must not depend on `GreetingsApp`.
-
-An additional aspirational rule is included as `[Explicit]`:
-
 - Controllers should not depend directly on `GreetingsCore.Adapters.Db`.
 
 Run AaC tests with:

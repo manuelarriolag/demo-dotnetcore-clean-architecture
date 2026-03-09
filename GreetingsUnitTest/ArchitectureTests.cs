@@ -47,7 +47,6 @@ namespace GreetingsUnitTest
         }
 
         [Test]
-        [Explicit("Aspirational AaC rule. Enable after moving DB access out of Controllers.")]
         public void Controllers_Should_Not_Depend_On_Core_Adapters_Db()
         {
             var result = Types.InAssembly(typeof(GreetingsController).Assembly)

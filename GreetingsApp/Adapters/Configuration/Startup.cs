@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using GreetingsCore.Ports.Facades;
 using SimpleInjector;
 using SimpleInjector.Integration.AspNetCore.Mvc;
 using SimpleInjector.Lifestyles;
@@ -93,6 +94,8 @@ namespace GreetingsApp.Adapters.Configuration
                     .UseMySql(Configuration["Database:Greetings"])
                     .Options, 
                 Lifestyle.Singleton);
+
+            _container.Register<GreetingFacade>(Lifestyle.Singleton);
          
             _container.RegisterMvcControllers(app);
             _container.RegisterMvcViewComponents(app);

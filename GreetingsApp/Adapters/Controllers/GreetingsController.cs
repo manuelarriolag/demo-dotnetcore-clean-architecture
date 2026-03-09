@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using GreetingsCore.Adapters.Db;
 using GreetingsCore.Adapters.ViewModels;
 using GreetingsCore.Ports.Facades;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace GreetingsApp.Adapters.Controllers
 {
@@ -12,10 +10,10 @@ namespace GreetingsApp.Adapters.Controllers
     public class GreetingsController : Controller
     {
         private readonly GreetingFacade _facade;
-        
-        public GreetingsController(DbContextOptions<GreetingContext> options)
+
+        public GreetingsController(GreetingFacade facade)
         {
-            _facade = new GreetingFacade(options);
+            _facade = facade;
         }
 
         [HttpGet]
