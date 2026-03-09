@@ -8,6 +8,13 @@ Execute in Powershell
 build.ps1
 ```
 
+Or execute in macOS/Linux shell:
+
+```
+chmod +x build.sh
+./build.sh
+```
+
 Run 
 
 ```
@@ -60,5 +67,33 @@ GET http://localhost:5000/api/Greetings
 ### And now you can delete one greeetings
 
 DELETE http://localhost:5000/api/Greetings/{xxxx-xxxx-xxxx-xxx}
+
+## Architecture-as-Code (AaC)
+
+This repository now includes architecture tests in `GreetingsUnitTest/ArchitectureTests.cs`.
+
+Current enforced rules:
+
+- `GreetingsCore` must not depend on `GreetingsApp`.
+- `GreetingsCore.Model` must not depend on `GreetingsCore.Adapters`.
+- `GreetingsCore.Ports` must not depend on `GreetingsApp`.
+
+An additional aspirational rule is included as `[Explicit]`:
+
+- Controllers should not depend directly on `GreetingsCore.Adapters.Db`.
+
+Run AaC tests with:
+
+```bash
+dotnet test GreetingsUnitTest/GreetingsUnitTest.csproj --filter "FullyQualifiedName~ArchitectureTests"
+```
+
+Recommended CI step:
+
+```bash
+dotnet restore
+dotnet build --no-restore
+dotnet test --no-build
+```
 
 
